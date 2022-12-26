@@ -4,7 +4,8 @@
   background-color: #282c34;
   color: white;
   position: absolute;
-  top: 0;bottom: 0;right: 0;left: 0;
+  height: 100%;
+  width: 100%;
 }
 
 .side-menu {
@@ -13,7 +14,13 @@
   background-color: #202123;
 }
 
+.side-menu-button {
+  padding: 15px;
+  border: 1px solid white;
+  border-radius: 5px;
+}
+
 .chatbox{
   flex: 1;
-  background-color: #434654;
+  background-color: #343541;
 }
