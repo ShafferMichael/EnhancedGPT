@@ -31,7 +31,62 @@
   padding-right: 12px;
 }
 
-.chatbox {
+.chat-box {
   flex: 1;
   background-color: #343541;
+  position: relative;
+}
+
+.chat-input-holder {
+  padding: 24px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.chat-input-textarea {
+  background-color: #40414f;
+  width: 100%;
+  border-radius: 5px;
+  border: none;
+  margin: 12px;
+  outline: none;
+  box-shadow: 0 8px 4px 0 rgba(0, 0, 0, 0.25);
+  border-color: none;
+  padding: 12px;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.chat-log {
+  text-align: left;
+}
+.chat-message.chatgpt {
+  background-color: #444654;
+}
+.chat-message-center {
+  padding: 12px;
+  padding-left: 24px;
+  padding-right: 24px;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+}
+.avatar {
+  background: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+.avatar.chatgpt {
+  background: #0da37f;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+.message {
+  padding-left: 40px;
+  padding-right: 40px;
 }
