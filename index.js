@@ -1,13 +1,15 @@
-// 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
-
+// require the OpenAI API client library
 const { Configuration, OpenAIApi } = require("openai");
+
 const configuration = new Configuration({
   organization: "org-fdEElitDGbfqLgz6ZLYDyBAH",
-  apiKey: "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",
+  apiKey: "",
 });
-const openai = new OpenAIApi(configuration);
-// const response = await openai.listEngines();
 
+// create the OpenAI API instance
+const openai = new OpenAIApi(configuration);
+
+// Create a completion request node.js
 const response = await openai.createCompletion({
   model: "text-davinci-003",
   prompt: "Say this is a test",
