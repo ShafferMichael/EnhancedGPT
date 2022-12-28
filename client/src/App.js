@@ -12,18 +12,22 @@ function App() {
   const [chatLog, setChatLog] = useState([
     {
       user: "gpt",
-      message: "How can I help you",
-    },
-    {
-      user: "me",
-      message: "I have a question",
+      message: "How can I help you?",
     },
   ]);
 
+  // add a function to clear the chat log
+  const clearChatLog = () => {
+    setChatLog([]);
+  };
+
   async function handleSubmit(e) {
     e.preventDefault();
-    setChatLog([...chatLog, { user: "me", message: `${input}` }]);
+    let chatLogNew = [...chatLog, { user: "me", message: `${input}` }];
     setInput("");
+    setChatLog(chatLogNew);
+
+    const messages = chatLogNew.map((message) => message.message).join("\n");
     // fetch response to the api combining the chat log array of messages and sending it as a message to local host: 3000 as a post
     const response = await fetch("http://localhost:3080", {
       method: "POST",
@@ -31,18 +35,18 @@ function App() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        message: chatLog.map((message) => message.message).join(""),
+        message: messages,
       }),
     });
 
     const data = await response.json();
-    setChatLog([...chatLog, { user: "gpt", message: `${data.message}` }]);
+    setChatLog([...chatLogNew, { user: "gpt", message: `${data.message}` }]);
   }
 
   return (
     <div className="App">
       <aside className="side-menu">
-        <div className="side-menu-button">
+        <div className="side-menu-button" onClick={clearChatLog}>
           <span>+</span>
           New Chat
         </div>

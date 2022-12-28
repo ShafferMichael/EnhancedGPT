@@ -7,7 +7,7 @@ const cors = require("cors");
 // Set up a configuration object with the organization ID and API key for the OpenAI API
 const configuration = new Configuration({
   organization: "org-fdEElitDGbfqLgz6ZLYDyBAH",
-  apiKey: "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",
+  apiKey: "",
 });
 
 // Create an OpenAI API instance using the configuration object
