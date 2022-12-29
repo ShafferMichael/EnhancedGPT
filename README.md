@@ -41,4 +41,4 @@ To contribute to this project:
 
 ## License
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for more information.
+This project is not licensed under the MIT License. See [LICENSE](LICENSE) for more information.
