@@ -2,17 +2,20 @@ import "./normalize.css";
 import "./App.css";
 import { useState, useEffect } from "react";
 
+// Import the normalize.css and App.css files for styling the UI
+// Import the useState and useEffect hooks from the React library
+
 /**
  * TODO: add awesomefont font to search bar <span>+</span>
  */
 
 function App() {
-  // use effect run once when the app loads
+  // The useEffect hook is used to call the getModels function once when the app loads
   useEffect(() => {
     getModels();
   }, []);
 
-  // add state for input and chat log
+  // Declare state variables for input, models, current model, and chat log
   const [input, setInput] = useState("");
   const [models, setModels] = useState([]);
   const [currentModel, setCurrentModel] = useState("text-davinci-003");
@@ -23,25 +26,33 @@ function App() {
     },
   ]);
 
-  // add a function to clear the chat log
+  // function to clear the chat log
   const clearChatLog = () => {
     setChatLog([]);
   };
 
+  // function to fetch the list of available models from the local server
   function getModels() {
     fetch("http://localhost:3080/models")
       .then((response) => response.json())
       .then((data) => setModels(data.models.data));
   }
 
+  // Define a function to handle the form submission
   async function handleSubmit(e) {
+    // Prevent the default form submission behavior
     e.preventDefault();
+
+    // Add the user's input to the chat log
     let chatLogNew = [...chatLog, { user: "me", message: `${input}` }];
+    // Clear the input field
     setInput("");
+    // Update the chat log state
     setChatLog(chatLogNew);
 
+    // Map the chat log array to a string with newline separators
     const messages = chatLogNew.map((message) => message.message).join("\n");
-    // fetch response to the api combining the chat log array of messages and sending it as a message to local host: 3000 as a post
+    // Send a POST request to the local server with the chat log and the current model
     const response = await fetch("http://localhost:3080", {
       method: "POST",
       headers: {
@@ -53,6 +64,7 @@ function App() {
       }),
     });
 
+    // Update the chat log with the response from the server
     const data = await response.json();
     setChatLog([...chatLogNew, { user: "gpt", message: `${data.message}` }]);
   }
@@ -98,6 +110,7 @@ function App() {
   );
 }
 
+// Define a functional component to render a chat message
 const ChatMessage = ({ message }) => {
   return (
     <div className={`chat-message ${message.user === "gpt" && "chatgpt"}`}>
@@ -127,3 +140,14 @@ const ChatMessage = ({ message }) => {
 };
 
 export default App;
+
+/**
+ * DESCRIPTION:
+ * This code is a React component that allows users to chat with an OpenAI language model.
+ * When the component mounts, it sends a GET request to the server to retrieve a list of available models.
+ * The user can then select a model from a dropdown menu and enter a message in the chat form.
+ * When the form is submitted, the component sends a POST request to the server with the chat log and
+ * the selected model as the request body. The server responds with a message from the language model,
+ * which is displayed to the user and added to the chat log. The component also includes a button that allows
+ * the user to clear the chat log.
+ */
