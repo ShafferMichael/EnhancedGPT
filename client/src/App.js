@@ -1,12 +1,13 @@
 import "./normalize.css";
 import "./App.css";
 import { useState, useEffect } from "react";
-
 // Import the normalize.css and App.css files for styling the UI
 // Import the useState and useEffect hooks from the React library
 
 /**
  * TODO: add awesomefont font to search bar <span>+</span>
+ * TODO: add welcome message to chat log
+ * TODO: add text to speech
  */
 
 function App() {
