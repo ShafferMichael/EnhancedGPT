@@ -1,14 +1,21 @@
 import "./normalize.css";
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 /**
  * TODO: add awesomefont font to search bar <span>+</span>
  */
 
 function App() {
+  // use effect run once when the app loads
+  useEffect(() => {
+    getModels();
+  }, []);
+
   // add state for input and chat log
   const [input, setInput] = useState("");
+  const [models, setModels] = useState([]);
+  const [currentModel, setCurrentModel] = useState("text-davinci-003");
   const [chatLog, setChatLog] = useState([
     {
       user: "gpt",
@@ -20,6 +27,12 @@ function App() {
   const clearChatLog = () => {
     setChatLog([]);
   };
+
+  function getModels() {
+    fetch("http://localhost:3080/models")
+      .then((response) => response.json())
+      .then((data) => setModels(data.models.data));
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -36,6 +49,7 @@ function App() {
       },
       body: JSON.stringify({
         message: messages,
+        currentModel,
       }),
     });
 
@@ -49,6 +63,17 @@ function App() {
         <div className="side-menu-button" onClick={clearChatLog}>
           <span>+</span>
           New Chat
+        </div>
+        <div className="Models">
+          <select
+            onChange={(e) => {
+              setCurrentModel(e.target.value);
+            }}
+          >
+            {models.map((model) => (
+              <option id={model.id}>{model.id}</option>
+            ))}
+          </select>
         </div>
       </aside>
       <section className="chat-box">
