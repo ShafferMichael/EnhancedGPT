@@ -36,10 +36,6 @@ To contribute to this project:
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request
 
-## Author
-
-- Michael Shaffer
-
 ## License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for more information.
