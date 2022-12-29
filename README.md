@@ -36,6 +36,9 @@ To contribute to this project:
 4. Push to the branch: `git push origin my-new-feature`
 5. Submit a pull request
 
+## Original Inspiration
+[Adrian Twarog](https://www.youtube.com/watch?v=qwM23_kF4v4&t=1942s)
+
 ## License
 
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for more information.
